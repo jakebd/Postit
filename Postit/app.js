@@ -1,11 +1,11 @@
 import express from "express";
 import cors from "cors";
-import userRoute from "./routes/api/User.js";
+// import userRoute from "./routes/api/User.js";
 
 const app = express();
 app.use(cors());
 
-app.use("/api/user", userRoute);
+// app.use("/api/user", userRoute);
 
 app.use((err, req, res) => {
   console.error(err.stack);

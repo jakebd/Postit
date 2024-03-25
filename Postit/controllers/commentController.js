@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 // CommentController.js
 
-const { Comment } = require("../models/Comment");
+const { Comment } = require("../models/ModelSchema");
 
 const createComment = async (req, res) => {
   try {

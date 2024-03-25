@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 // UserController.js
 
-const { User } = require("../models/User");
+const { User } = require("../models/ModelSchema");
 
 const createUser = async (req, res) => {
   try {

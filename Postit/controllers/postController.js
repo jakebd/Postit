@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 // PostController.js
 
-const { Post } = require("../models/Post");
+const { Post } = require("../models/ModelSchema");
 
 const createPost = async (req, res) => {
   try {

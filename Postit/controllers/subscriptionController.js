@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 // SubscriptionController.js
 
-const { Subscription } = require("../models/Subscription");
+const { Subscription } = require("../models/ModelSchema");
 
 const createSubscription = async (req, res) => {
   try {

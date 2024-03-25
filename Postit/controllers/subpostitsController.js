@@ -1,8 +1,7 @@
 /* eslint-disable no-undef */
 // SubpostitsController.js
 
-const { Subpostits } = require("../models/Subpostits");
-
+const { Subpostits } = require("../models/ModelSchema");
 const createSubpostit = async (req, res) => {
   try {
     const newSubpostit = new Subpostits(req.body);

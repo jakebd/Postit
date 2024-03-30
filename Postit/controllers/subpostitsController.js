@@ -8,7 +8,13 @@ const createSubpostit = async (req, res) => {
     await newSubpostit.save();
     res.status(201).json(newSubpostit);
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    if(error.code === 11000){
+      res.status(406).json({
+        message: "Duplicate Name"
+    })
+    }else{
+      res.status(400).json({ message: error.message });
+    }
   }
 };
 
@@ -23,7 +29,13 @@ const updateSubpostit = async (req, res) => {
     }
     res.json(updatedSubpostit);
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    if(error.code === 11000){
+      res.status(406).json({
+        message: "Duplicate Name"
+    })
+    }else{
+      res.status(400).json({ message: error.message });
+    }
   }
 };
 

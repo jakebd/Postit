@@ -46,7 +46,7 @@ const getPostById = async (req, res) => {
     const { id } = req.params;
     const post = await Post.findById(id);
     if (!post) {
-      return res.status(404).json({ message: "Post not found" });
+      return res.status(404).json({ message: "Post not found (get by ID)" });
     }
     res.json(post);
   } catch (error) {
@@ -59,7 +59,21 @@ const getPosts = async (req, res) => {
     const posts = await Post.find();
     res.json(posts);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ message: error.message + "(get All)" });
+  }
+};
+
+const getPostsBySub = async (req, res) => {
+  try {
+    const { id } = req.params;
+    //const post = await Post.findById(id);
+    const posts = await Post.find({ subpostitsId: id }).exec();
+    if (!posts) {
+      return res.status(404).json({ message: "SubPostIt not found" });
+    }
+    res.json(posts);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
   }
 };
 
@@ -69,4 +83,5 @@ module.exports = {
   deletePost,
   getPostById,
   getPosts,
+  getPostsBySub
 };

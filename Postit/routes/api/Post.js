@@ -11,5 +11,7 @@ router.put("/:id", PostController.updatePost);
 router.delete("/:id", PostController.deletePost);
 router.get("/:id", PostController.getPostById);
 router.get("/", PostController.getPosts);
+router.get("/subpostit/:id", PostController.getPostsBySub);
+
 
 module.exports = router;

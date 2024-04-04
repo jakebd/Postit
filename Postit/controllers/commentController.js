@@ -54,6 +54,19 @@ const getCommentById = async (req, res) => {
   }
 };
 
+const getCommentsByPostId = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const comment = await Comment.find({ postId: id }).exec();
+    if (!comment) {
+      return res.status(404).json({ message: "Comment not found" });
+    }
+    res.json(comment);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
 const getComments = async (req, res) => {
   try {
     const comments = await Comment.find();
@@ -69,4 +82,5 @@ module.exports = {
   deleteComment,
   getCommentById,
   getComments,
+  getCommentsByPostId
 };

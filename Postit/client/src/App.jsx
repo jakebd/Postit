@@ -14,7 +14,14 @@ import ViewPost from './components/ViewPost';
 import DeletePost from './components/DeletePost';
 import EditPost from './components/EditPost';
 import CreatePost from './components/CreatePost';
+import ViewProfile from './components/ViewProfile';
+// import the library
+import { library } from '@fortawesome/fontawesome-svg-core'
 
+// import your icons
+import { fab } from '@fortawesome/free-brands-svg-icons'
+import { fas } from '@fortawesome/free-solid-svg-icons'
+import { far } from '@fortawesome/free-regular-svg-icons'
 
 const App = () => {
   const [subid, setSubid] = useState("")
@@ -29,6 +36,7 @@ const App = () => {
           <Route path="/posts" element={<Posts data={setSubid}/>} />
           <Route path="/posts/view" element={<ViewPost />} />
           <Route element={<ProtectedRoutes/>}>
+            <Route path="/viewprofile" element={<ViewProfile />} />
             <Route path="/subpostit/create" element={<CreateSubForm/>}/>
             <Route path="/subpostit/edit" element={<EditSub />} />
             <Route path="/subpostit/delete" element={<DeleteSub />} />
@@ -47,3 +55,4 @@ const App = () => {
 }
 
 export default App
+library.add(fab, fas, far)

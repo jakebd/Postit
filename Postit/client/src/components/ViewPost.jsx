@@ -4,64 +4,45 @@ import authService from '../services/authService';
 import { useNavigate } from 'react-router-dom'
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
-import { useState } from 'react';
+import {useEffect, useState} from 'react';
+import Comment from './Comment';
 
 
-const ViewPost = props => {
-    const {register, handleSubmit, formState: { errors }} = useForm();
-    const navigate = useNavigate();
-    const [serverMesage, setServerMessage] = useState();
+const ViewPost = (props) => {
 
     const location = useLocation()
-    const { postsData } = location.state
-    console.log(postsData)
-    const [placeHolderText, setText] = useState(postsData);
+    const { postData } = location.state
+    const [placeHolderText, setText] = useState(postData);
+    const [comments, setComments] = useState([]);
 
-
-    const sendCredentials = data => {
-        const formulatedData = {
-            name:data.name,
-            creatorId: authService.signInId(),
-        }
-        axios.put(`${import.meta.env.VITE_API_URL}/subpostits/`+postsData.data["_id"], formulatedData)
-                .then(response => {
-                    console.log(response)
-                    //console.log(response.headers['x-auth-token'])
-                    //localStorage.setItem('token', response.headers['x-auth-token']);
-                    if(response.status==200){
-                        navigate('/');
-                    }else{
-                        console.log("Failed to submit and redirect");
-                    }
-                    //can be sessionStorage as well. 
-                })
-                .catch(err =>{ 
-                    console.log(err);
-                    if(err.request.status == 406){
-                        setServerMessage("Please Provide a unique Sub-Postit name");
-                    }else{
-                        setServerMessage("Can't Edit Subpostit.");
-                    }
-                    
-
-                });
-    }
-
-    const nameValidationRules = {
-        required: "Name is Required!",
-        onChange: () => setServerMessage(null),
-    }
+    useEffect(()=>{
+        axios.get(`${import.meta.env.VITE_API_URL}/comments/bypostid/`+postData["_id"])
+            .then((response) => {
+                setComments(response.data)
+                console.log(response.data)
+            }).catch(error =>{
+                console.log(error);
+            })
+    }, []);
 
     return (
-        <form onSubmit={handleSubmit(sendCredentials)} className="form-signin">
-            <h1 className="h3 mb-3 font-weight-normal text-center">Edit a Sub-PostIt</h1>
-            <label htmlFor="companyName" className="sr-only">Name</label>
-            <input {...register('name', nameValidationRules)} type="text" id="Name" className="form-control" placeholder="Sub-PostIt Name" />
-            {errors.name && <p className='ml-2 mt-1 small text-danger'>{errors.name.message}</p>}
+        <form className="form-signin">
+            <h1 className="h3 mb-3 font-weight-normal text-center">View Post</h1>
+            <label htmlFor="title" className="sr-only">Title</label>
+            <input type="text" id="title" className="form-control" placeholder="Post Title" value={placeHolderText.title} />
 
-            <button className="btn btn-lg btn-primary btn-block" type="submit">Edit</button>
+            <label htmlFor="content" className="sr-only">Post content</label>
+            <input type="text" id="content" className="form-control" placeholder="Post Content" value={placeHolderText.content}/>
 
-            {serverMesage && <div className='ml-2 small text-danger'>{serverMesage}</div>}
+            <button className="btn btn-lg btn-primary btn-block" type="submit">Comment</button>
+
+            {
+              comments.map((item, index) => {
+                return(
+                  <Comment key={index} data={item}/>
+                )
+              })
+            }
         </form>
      );
 }

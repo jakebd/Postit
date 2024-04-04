@@ -31,6 +31,10 @@ const Register = props => {
             <input {...register('email')} type="email" id="inputEmail" className="form-control" placeholder="Email address" required autoFocus />
             <label htmlFor="inputPassword" className="sr-only">Password</label>
             <input {...register('password')} type="password" id="inputPassword" className="form-control" placeholder="Password" required />
+            <div className="form-check">
+                <input {...register('isPro')} className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"/>
+                <label className="form-check-label" >Pro Subscription</label>
+            </div>
             <button className="btn btn-lg btn-primary btn-block" type="submit">Register</button>
         </form>
      );

@@ -17,6 +17,9 @@ class authService {
                     console.log(response.data.id);
                     sessionStorage.setItem("loggedin", loginData.email);
                     sessionStorage.setItem("userId", response.data.id);
+                    sessionStorage.setItem("userName", response.data.name);
+                    sessionStorage.setItem("userNick", response.data.username);
+                    sessionStorage.setItem("isPro", response.data.isPro);
                     callback(true);
                     break;
                 }
@@ -38,6 +41,9 @@ class authService {
                     if(response.status == 200){
                         sessionStorage.setItem("loggedin", loginData.email)
                         sessionStorage.setItem("userId", response.data["_id"]);
+                        sessionStorage.setItem("userName", loginData.name);
+                        sessionStorage.setItem("userNick", loginData.username);
+                        sessionStorage.setItem("isPro", loginData.isPro);
                         callback(true);
                     }else{
                         callback(false);
@@ -62,6 +68,18 @@ class authService {
         return sessionStorage.getItem("userId");
     }
 
+    signInName(){
+        return sessionStorage.getItem("userName");
+    }
+
+    signInNick(){
+        return sessionStorage.getItem("userNick");
+    }
+
+    signInIsPro(){
+        return sessionStorage.getItem("isPro");
+    }
+
     logout(callback){
         axios.post(`${import.meta.env.VITE_API_URL}/users/logout`)
         .then(response => {
@@ -69,6 +87,9 @@ class authService {
                 case 204:{
                     sessionStorage.removeItem('loggedin')
                     sessionStorage.removeItem('userId')
+                    sessionStorage.removeItem('userNick')
+                    sessionStorage.removeItem('userName')
+                    sessionStorage.removeItem('isPro')
                     callback(true);
                     break;
                 }

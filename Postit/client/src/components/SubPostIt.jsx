@@ -18,19 +18,19 @@ const Card = (props) => {
               <div className="image-overlay"></div> 
             </a>
           </div>
-          <h4 className="mt-2">{props.data.name}</h4>
-          <small className="text-muted">By <a href="#"><strong> John Doe</strong></a> |  Post on Jan 8, 2013  | 58 comments</small>
+          <h4 className="mt-2 ml-2">{props.data.name}</h4>
+          <small className="text-muted ml-2">By <a href="#"><strong> John Doe</strong></a> |  Post on Jan 8, 2013  | 58 comments</small>
           
-          <p className="m-top-sm m-bottom-sm">
+          <p className="m-top-sm m-bottom-sm ml-2">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eros nibh, viverra a dui a, gravida varius velit. Nunc vel tempor nisi. Aenean id pellentesque mi, non placerat mi. Integer luctus accumsan tellus. Vivamus quis elit sit amet nibh lacinia suscipit eu quis purus. Vivamus tristique est non ipsum dapibus lacinia sed nec metus.
           </p>
-          <div className="btn-group mb-2">
+          <div className="btn-group mb-2 ml-2">
               <Link type="button" to="/posts" state={{postsData: props}} className="btn btn-sm btn-outline-secondary">View Posts</Link>
               <Link type="button" to="/subpostit/edit" state={{postsData: props}} className="btn btn-sm btn-outline-secondary">Edit</Link>
               <Link type="button" to="/subpostit/delete" state={{postsData: props}} className="btn btn-sm btn-outline-secondary">Delete</Link>
           </div>
             <span className="post-like text-muted tooltip-test" data-toggle="tooltip" data-original-title="I like this post!">
-              <i className="fa fa-heart"></i> <span className="like-count">25</span>
+              <i className="fa fa-heart mr-1"></i> <span className="like-count mr-2">25</span>
             </span>            
           </div> 
     </div>

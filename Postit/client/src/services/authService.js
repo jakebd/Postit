@@ -18,6 +18,7 @@ class authService {
                     sessionStorage.setItem("loggedin", loginData.email);
                     sessionStorage.setItem("userId", response.data.id);
                     sessionStorage.setItem("userName", response.data.name);
+                    sessionStorage.setItem("userlName", response.data.lname);
                     sessionStorage.setItem("userNick", response.data.username);
                     sessionStorage.setItem("isPro", response.data.isPro);
                     callback(true);
@@ -42,6 +43,7 @@ class authService {
                         sessionStorage.setItem("loggedin", loginData.email)
                         sessionStorage.setItem("userId", response.data["_id"]);
                         sessionStorage.setItem("userName", loginData.name);
+                        sessionStorage.setItem("userlName", loginData.lname);
                         sessionStorage.setItem("userNick", loginData.username);
                         sessionStorage.setItem("isPro", loginData.isPro);
                         callback(true);
@@ -72,6 +74,10 @@ class authService {
         return sessionStorage.getItem("userName");
     }
 
+    signInlName(){
+        return sessionStorage.getItem("userlName");
+    }
+
     signInNick(){
         return sessionStorage.getItem("userNick");
     }
@@ -89,6 +95,7 @@ class authService {
                     sessionStorage.removeItem('userId')
                     sessionStorage.removeItem('userNick')
                     sessionStorage.removeItem('userName')
+                    sessionStorage.removeItem('userlName')
                     sessionStorage.removeItem('isPro')
                     callback(true);
                     break;

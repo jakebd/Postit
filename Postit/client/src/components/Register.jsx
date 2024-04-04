@@ -23,9 +23,11 @@ const Register = props => {
     return (
         <form onSubmit={handleSubmit(sendCredentials)} className="form-signin">
             <h1 className="h3 mb-3 font-weight-normal text-center">Please Register</h1>
-            <label htmlFor="inputFName" className="sr-only">Name</label>
+            <label htmlFor="inputFName" className="sr-only">First Name</label>
             <input {...register('name')} type="text" id="inputFName" className="form-control" placeholder="Name" required autoFocus />
-            <label htmlFor="inputLName" className="sr-only">Last Name</label>
+            <label htmlFor="inputFName" className="sr-only">Last Name</label>
+            <input {...register('lname')} type="text" id="inputFName" className="form-control" placeholder="Name" required autoFocus />
+            <label htmlFor="inputLName" className="sr-only">UserName</label>
             <input {...register('username')} type="text" id="inpuUsername" className="form-control" placeholder="Username" required autoFocus />
             <label htmlFor="inputEmail" className="sr-only">Email address</label>
             <input {...register('email')} type="email" id="inputEmail" className="form-control" placeholder="Email address" required autoFocus />

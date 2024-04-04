@@ -104,7 +104,7 @@ const login = async (req, res) => {
                                         res.setHeader('Set-Cookie', cookieString);
                                         //res.cookie('jwt', token, cookieOptions);
 
-                                        res.status(200).send({"Message":"Logged in", "id": data["_id"], "name": data.name, "email": data.email, "isPro": data.isPro, "username": data.username})
+                                        res.status(200).send({"Message":"Logged in", "id": data["_id"], "name": data.name, "lname": data.lname, "email": data.email, "isPro": data.isPro, "username": data.username})
                                       }
                                       else{
                                         res.status(401).send("Failed to login, check credentials.")

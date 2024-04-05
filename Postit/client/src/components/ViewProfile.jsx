@@ -8,7 +8,9 @@ import {useEffect, useState} from 'react';
 import Comment from './Comment';
 
 
+
 const ViewProfile = (props) => {
+
     const {register, handleSubmit, formState: { errors }} = useForm();
     const navigate = useNavigate();
 
@@ -52,6 +54,26 @@ const ViewProfile = (props) => {
                 });
     }
 
+    function handleClick() {
+        const formulatedData = {
+            isPro: (authService.signInIsPro()==='false')
+        }
+        axios.put(`${import.meta.env.VITE_API_URL}/users/`+signInId, formulatedData)
+                .then(response => {
+                    console.log(response)
+                    if(response.status==200){
+                        sessionStorage.setItem("isPro", formulatedData.isPro);
+                    }else{
+                        console.log("Failed to submit and redirect");
+                    }
+                    //can be sessionStorage as well. 
+                })
+                .catch(err =>{ 
+                    console.log(err);
+                    setServerMessage("Can't Edit Post.");
+                });
+    }
+
     const nameValidationRules = {
         required: "Name is Required!",
         onChange: () => setServerMessage(null),
@@ -72,7 +94,7 @@ const ViewProfile = (props) => {
 
     return (
 
-        <div className="container-xl px-4 mt-4 mb-5" style={{height: 500}}>
+        <div className="container-xl px-4 mt-4 mb-5" style={{height: "100vh"}}>
             <div className="row">
                 <div className="col-xl-4">
                     {/* <!-- Profile picture card--> */}
@@ -129,6 +151,11 @@ const ViewProfile = (props) => {
                                     <div className="col-md-6">
                                         <input {...register('isPro')} className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" checked={user.isPro} onChange={e => setUser({...user, isPro: e.target.checked})}/>
                                         <label className="form-check-label" >Pro Subscription</label>
+                                    </div>
+                                    <div className="btn-group mb-2 ml-2" onClick={handleClick}>
+                                        <a href="https://buy.stripe.com/test_3cs9C66C00nD3xCeUU" type="button" className="btn btn-success" data-mdb-ripple-init>Buy Pro</a>
+                                        <a href="https://buy.stripe.com/test_7sIdSm2lKgmB8RWbIJ" type="button" className="btn btn-warning" data-mdb-ripple-init>Buy Ad-free</a>
+                                        <a href="https://buy.stripe.com/test_eVa7tY5xW4DT0lq002" type="button" className="btn btn-danger" data-mdb-ripple-init>Buy a Donation</a>
                                     </div>
                                 </div>
 

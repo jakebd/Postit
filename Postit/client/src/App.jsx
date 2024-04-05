@@ -15,6 +15,7 @@ import DeletePost from './components/DeletePost';
 import EditPost from './components/EditPost';
 import CreatePost from './components/CreatePost';
 import ViewProfile from './components/ViewProfile';
+
 // import the library
 import { library } from '@fortawesome/fontawesome-svg-core'
 

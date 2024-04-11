@@ -54,12 +54,12 @@ const NavBar = ({ subpostitId }) => {
               ) : 
               (
                 <>
-                  <li className="nav-item text-dark">
-                    <Link className="nav-link" to="/signin">Sign In</Link>
+                  <li className="nav-item active text-dark h6 mt-2 mr-2">
+                    <Link className="btn btn-sm btn-secondary" to="/signin">Sign In</Link>
                   </li>
 
-                  <li className="nav-item text-dark">
-                    <Link className="nav-link" to="/register">Register</Link>
+                  <li className="nav-item active text-dark h6 mt-2">
+                    <Link className="btn btn-sm btn-secondary" to="/register">Register</Link>
                   </li>
                 </>
               )

@@ -30,7 +30,7 @@ const subscriptionSchema = new Schema(
     userId: { type: String, ref: "User", required: true },
     subpostitsId: { type: String, ref: "Subpostits", required: true },
   },
-  { _id: false }
+  { _id: true }
 );
 
 // Post Schema
@@ -63,7 +63,7 @@ const voteSchema = new Schema(
     commentId: { type: String, ref: "Comment" },
     type: { type: String, enum: ["UP", "DOWN"], required: true },
   },
-  { _id: false, timestamps: true }
+  { _id: true, timestamps: true }
 );
 
 // Model creation
